@@ -1,0 +1,16 @@
+function [res] = generate_dist_data( N, K, rho, beta, sigma, seed_generate)
+p = length(beta);
+res =zeros(N, 2*p+5);
+[ Y,W,X ] = SBM( N, K, rho, beta, sigma, seed_generate);
+Omega_mat = sum(W.^2);
+W_Y = W * Y;
+Wt_Y = W' * Y;
+Wt_W_Y = W' * W * Y;
+Wt_X = W' * X;
+res(:,1) = Omega_mat;
+res(:,2) = W_Y;
+res(:,3) = Wt_Y;
+res(:,4) = Wt_W_Y;
+res(:,5:(p+4)) = Wt_X;
+res(:,(p+5):(2*p+4)) = X;
+res(:,(2*p+5)) = Y;

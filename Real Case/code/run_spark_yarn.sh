@@ -1,0 +1,2 @@
+! /usr/bin/bash
+spark-submit --master yarn --deploy-mode client --driver-memory 120g --executor-memory 6g --num-executors 50 --executor-cores 1 --conf spark.rpc.message.maxSize=1024 --conf spark.yarn.dist.archives=pyspark_env.zip#pyspark_env --conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./pyspark_env/pyspark_env/bin/python3 --conf spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./pyspark_env/pyspark_env/bin/python3 /root/dsar.py
